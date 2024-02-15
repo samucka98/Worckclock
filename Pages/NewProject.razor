@@ -1,0 +1,58 @@
+@page "/novo-projeto"
+
+<PageTitle>Projetos</PageTitle>
+
+<h3 class="mb-3">Adicionar novo projeto</h3>
+
+<EditForm Model="@newProject" OnValidSubmit="HandleValidSubmit">
+  <div class="input-group mb-3">
+    <span class="input-group-text">Título</span>
+    <InputText class="form-control" @bind-Value="newProject.Title" />
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text">Descrição</span>
+    <InputText class="form-control" @bind-Value="newProject.Description" />
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text">Prazo</span>
+    <InputDate class="form-control" @bind-Value="newProject.DeliveryTime" />
+  </div>
+
+  <div class="input-group mb-3">
+    <button type="submit" class="btn btn-primary">Adicionar</button>
+  </div>
+</EditForm>
+
+@code {
+  private Project newProject = new Project();
+
+  private void HandleValidSubmit()
+  {
+    // Implementação da lógica para salvar o projeto
+  }
+
+  public class Base
+  {
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string Title { get; set; } = "";
+    public string Description { get; set; } = "";
+    public DateTime Created_at { get; set; }
+  }
+
+  public class Project : Base
+  {
+    public int TotalMinutes { get; set; }
+    public int CurrentMinutes { get; set; }
+    public double Revenue { get; set; }
+    public double ExpectedRevenue { get; set; }
+    public DateTime DeliveryTime { get; set; }
+    public List<Commit> Commits { get; set; } = new();
+  }
+
+  public class Commit : Base
+  {
+    public int Minutes { get; set; }
+  }
+}

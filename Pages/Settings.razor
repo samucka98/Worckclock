@@ -1,0 +1,23 @@
+@page "/configuracoes"
+
+<PageTitle>Configurações</PageTitle>
+
+<h2 class="mb-3">Valor Hora</h2>
+<p>Atualmente o seu valor hora está definido como: <strong>R$ @value</strong>/h</p>
+
+<div class="input-group mb-3 w-50">
+  <span class="input-group-text" id="basic-addon1">R$</span>
+  <input type="number" @bind="value" step="0.01" class="form-control" aria-label="Username"
+    aria-describedby="basic-addon1">
+  <button type="submit" class="btn btn-primary">Aplicar</button>
+</div>
+
+
+@code {
+  private double value = 0.0;
+
+  private void SetValue(double param)
+  {
+    value = param;
+  }
+}
